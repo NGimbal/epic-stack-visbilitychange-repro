@@ -212,6 +212,18 @@ function App() {
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
 	useToast(data.toast)
 
+	useEffect(() => {
+		const handleVisibilityChange = (e: any) => {
+			console.log('visibility changed', e)
+		}
+
+		document.addEventListener('visibilitychange', handleVisibilityChange)
+
+		return () => {
+			document.removeEventListener('visibilitychange', handleVisibilityChange)
+		}
+	}, [])
+
 	return (
 		<>
 			<div className="flex min-h-screen flex-col justify-between">
